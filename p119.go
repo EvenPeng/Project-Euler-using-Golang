@@ -23,6 +23,7 @@ func main() {
 	list := []int64{0, 0, 16}
 	n := 0
 
+	// Init the list, at least have 2 digits
 	for i := int64(3); i < 16; i++ {
 		list = append(list, i)
 		for list[i] < 16 {
@@ -35,12 +36,14 @@ func main() {
 	}
 
 	for n < 30 {
+		// update the minimum value
 		list[2] *= 2
 		if DigitsSum(list[2]) == 2 {
 			n++
 			fmt.Println(n, list[2])
 		}
 
+		// add possible bases
 		for i := int64(len(list)); i < list[2]; i++ {
 			if int64(len(strconv.FormatInt(list[2], 10))*9) < i {
 				break
@@ -48,6 +51,7 @@ func main() {
 			list = append(list, i)
 		}
 
+		// update the power of each bases and check its sum of digits
 		for i := int64(3); i < int64(len(list)); i++ {
 			if list[i] < list[2] {
 				list[i] *= i
